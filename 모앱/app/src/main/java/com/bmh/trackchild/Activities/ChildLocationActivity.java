@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class ChildLocationActivity extends FragmentActivity  {
+public class ChildLocationActivity extends FragmentActivity {
 
     EditText lonEdt, latEdt, phoneEdt;
     Button sendBtn;
@@ -61,7 +61,7 @@ public class ChildLocationActivity extends FragmentActivity  {
             @Override
             public void onClick(View v) {
 
-                sendSMS(sharedPrefs.getPreferences(R.string.Key_ChildPhone,""), "gps");
+                sendSMS(sharedPrefs.getPreferences(R.string.Key_ChildPhone, ""), "gps");
             }
         });
 

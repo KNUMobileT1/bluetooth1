@@ -1,6 +1,8 @@
 package com.bmh.trackchild.Activities;
+
 import com.bmh.trackchild.R;
 import com.bmh.trackchild.Tools.StaticValues;
+
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -25,17 +27,23 @@ import android.view.View;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 
-public class ChooseActivity extends AppCompatActivity{
+public class ChooseActivity extends AppCompatActivity {
+    //implements View.OnClickListener
     Intent intent;
     Switch swc1,swc2,swc3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
         swc1 = (Switch) findViewById(R.id.switch1);
+        swc2 = (Switch) findViewById(R.id.switch2);
+        swc3 = (Switch) findViewById(R.id.switch3);
 
 
-
+        /*switch1.setOnClickListener(this);
+        //swc2.setOnClickListener(this);
+        goback.setOnClickListener(this);*/
 
         swc1.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener(){//블루투스 기능
             @Override
@@ -48,20 +56,22 @@ public class ChooseActivity extends AppCompatActivity{
                     Log.d("test","on");
                     Intent intent = new Intent(
                             getApplicationContext(),//현재제어권자
-                            ChildDeviceActivity.class); // 이동할 컴포넌트
-                    startActivity(intent); // 서비스 시작
+                            ChildActivity.class); // 이동할 컴포넌트
+                    startService(intent); // 서비스 시작
 
 
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"off",Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(
+                            getApplicationContext(),//현재제어권자
+                            ChildActivity.class); // 이동할 컴포넌트
+                    stopService(intent); // 서비스 종료
                 }
             }
         });
 
-
-        /*swc3.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener(){//충격감지 기능
+        swc3.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener(){//충격감지 기능
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 String str=String.valueOf(isChecked);
@@ -85,19 +95,23 @@ public class ChooseActivity extends AppCompatActivity{
                     stopService(intent); // 서비스 종료
                 }
             }
-        });*/
+        });
     }
-   /* @Override
-        public void onClick (View view) {
+
+  /*  @Override
+    public void onClick(View view) {
         if (R.id.switch1 == view.getId()) {
             Intent intent = new Intent(this, ChildDeviceActivity.class);
             startActivity(intent);
-        } else if (R.id.switch2 == view.getId()){
+        } else if (R.id.switch2 == view.getId()) {
             Intent intent = new Intent(this, ChildDeviceActivity.class);
-        startActivity(intent);
-    }
-    finish();
-        }*/
+            startActivity(intent);
+        }
+        finish();
+    }*/
 
 
 }
+
+
+
